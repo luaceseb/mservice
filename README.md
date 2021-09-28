@@ -54,7 +54,7 @@ El código escrito deberá ser claro, prolijo y que exponga buenas costumbres pa
 
 ## Instalación DB
 * Instalar MariaDB en su entorno https://mariadb.org/
-* Run script ....
+* Run script on your DB => db/createTableOnMariaDB.sql
 > Nota: En DB no fueron creadas las tablas Brand/Model/Color por no ser parte del alcance del challenge
 
 ## Endpoint
