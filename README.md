@@ -50,10 +50,11 @@ El código escrito deberá ser claro, prolijo y que exponga buenas costumbres pa
 
 ## Endpoint
 * car
-    Get All Cars => method:GET url:car/v1
-    Get Car by Id => method:GET url:car/v1/:id
-    Get Car by Owner Id => method:GET url:car/v1/owner/:id
-    Create Car => method:POST url:car/v1/ body: {
+    1. Get All Cars => method:GET url:car/v1
+    2. Get Car by Id => method:GET url:car/v1/:id
+    3. Get Car by Owner Id => method:GET url:car/v1/owner/:id
+    4. Create Car => method:POST url:car/v1/ body: { "brandId", "modelId", "year", "colorId", "licensePlate", "ownerId"}
+    5. Update Car => method:PUT url:car/v1/:id body: {
                                                     "brandId": 1,
                                                     "modelId": 1,
                                                     "year": 2001,
@@ -61,15 +62,7 @@ El código escrito deberá ser claro, prolijo y que exponga buenas costumbres pa
                                                     "licensePlate": "ZZ99ZZ",
                                                     "ownerId": 1
                                                 }
-    Update Car => method:PUT url:car/v1/:id body: {
-                                                    "brandId": 1,
-                                                    "modelId": 1,
-                                                    "year": 2001,
-                                                    "colorId": 1010,
-                                                    "licensePlate": "ZZ99ZZ",
-                                                    "ownerId": 1
-                                                }
-    Delete Car => method:DELETE url:car/v1/:id
+    6. Delete Car => method:DELETE url:car/v1/:id
 
 * service
     Get All Services => method:GET url:service/v1
