@@ -38,7 +38,7 @@ El código escrito deberá ser claro, prolijo y que exponga buenas costumbres pa
 * MariaDB 10.6.4
 
 ## Instalación Proyecto
-* git clone ....
+* git clone https://github.com/luaceseb/mservice.git
 * cd mservice
 * npm install
 * npm run start
