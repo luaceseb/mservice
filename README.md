@@ -43,6 +43,15 @@ El código escrito deberá ser claro, prolijo y que exponga buenas costumbres pa
 * npm install
 * npm run start
 
+## Create .env.development or .env.production
+* APP_DB_HOST=....
+* APP_DB_DATABASE=....
+* APP_DB_USER=....
+* APP_DB_PASSWORD=....
+* APP_DB_PORT=3306
+* APP_DB_MULTIPLESTATEMENTS=true
+* APP_DB_CONNECTIONLIMIT=5
+
 ## Instalación DB
 * Instalar MariaDB en su entorno https://mariadb.org/
 * Run script ....
@@ -50,62 +59,62 @@ El código escrito deberá ser claro, prolijo y que exponga buenas costumbres pa
 
 ## Endpoint
 * car
-    1. Get All Cars => method:GET url:car/v1
-    2. Get Car by Id => method:GET url:car/v1/:id
-    3. Get Car by Owner Id => method:GET url:car/v1/owner/:id
-    4. Create Car => method:POST url:car/v1/ body: {
-                                                    "brandId": 1,
-                                                    "modelId": 1,
-                                                    "year": 2001,
-                                                    "colorId": 1010,
-                                                    "licensePlate": "ZZ99ZZ",
-                                                    "ownerId": 1
-                                                }
-    5. Update Car => method:PUT url:car/v1/:id body: {
-                                                    "brandId": 1,
-                                                    "modelId": 1,
-                                                    "year": 2001,
-                                                    "colorId": 1010,
-                                                    "licensePlate": "ZZ99ZZ",
-                                                    "ownerId": 1
-                                                }
-    6. Delete Car => method:DELETE url:car/v1/:id
+1. Get All Cars => method:GET url:car/v1
+2. Get Car by Id => method:GET url:car/v1/:id
+3. Get Car by Owner Id => method:GET url:car/v1/owner/:id
+4. Create Car => method:POST url:car/v1/ body: {
+                                                "brandId": 1,
+                                                "modelId": 1,
+                                                "year": 2001,
+                                                "colorId": 1010,
+                                                "licensePlate": "ZZ99ZZ",
+                                                "ownerId": 1
+                                            }
+5. Update Car => method:PUT url:car/v1/:id body: {
+                                                "brandId": 1,
+                                                "modelId": 1,
+                                                "year": 2001,
+                                                "colorId": 1010,
+                                                "licensePlate": "ZZ99ZZ",
+                                                "ownerId": 1
+                                            }
+6. Delete Car => method:DELETE url:car/v1/:id
 
 * service
-    1. Get All Services => method:GET url:service/v1
-    2. Get Service by Id => method:GET url:service/v1/:id
-    3. Create Service => method:POST url:service/v1/ body: {
-                                                            "name": "Name",
-                                                            "price": 101.10
-                                                        }
-    4. Update Service => method:PUT url:service/v1/:id body:{
-                                                            "name": "Nuevo",
-                                                            "price": 10.22
-                                                        }
-    5. Delete Service => method:DELETE url:service/v1/:id
+1. Get All Services => method:GET url:service/v1
+2. Get Service by Id => method:GET url:service/v1/:id
+3. Create Service => method:POST url:service/v1/ body: {
+                                                        "name": "Name",
+                                                        "price": 101.10
+                                                    }
+4. Update Service => method:PUT url:service/v1/:id body:{
+                                                        "name": "Nuevo",
+                                                        "price": 10.22
+                                                    }
+5. Delete Service => method:DELETE url:service/v1/:id
 
 * owner
-    1. Get All Owners => method:GET url:owner/v1
-    2. Get Owner by Id => method:GET url:owner/v1/:id
-    3. Create Owner => method:POST url:owner/v1/ body: {
-                                                        "cuil": "99-99999999-9",
-                                                        "firstName": "Juan",
-                                                        "lastName": "Perez"
-                                                    }
-    4. Update Owner => method:PUT url:owner/v1/:id body: {
-                                                        "cuil": "99-99999999-9",
-                                                        "firstName": "Juan",
-                                                        "lastName": "Perez"
-                                                    }
-    5. Delete Owner => method:DELETE url:owner/v1/:id
+1. Get All Owners => method:GET url:owner/v1
+2. Get Owner by Id => method:GET url:owner/v1/:id
+3. Create Owner => method:POST url:owner/v1/ body: {
+                                                    "cuil": "99-99999999-9",
+                                                    "firstName": "Juan",
+                                                    "lastName": "Perez"
+                                                }
+4. Update Owner => method:PUT url:owner/v1/:id body: {
+                                                    "cuil": "99-99999999-9",
+                                                    "firstName": "Juan",
+                                                    "lastName": "Perez"
+                                                }
+5. Delete Owner => method:DELETE url:owner/v1/:id
 
 * maintenance
-    1. Get All Maintenance => method:GET url:maintenance/v1
-    2. Get Maintenance by Id => method:GET url:maintenance/v1/:id
-    3. Get Maintenance by Car Id => method:GET url:maintenance/v1/car/:id
-    4. Create Maintenance => method:POST url:maintenance/v1/ body: {
-                                                                    "dateTime": "2001-01-01T10:10:10",
-                                                                    "carId": 1,
-                                                                    "serviceList": [1, 2, 3]
-                                                                }
-    5. Delete Maintenance => method:DELETE url:maintenance/v1/:id
+1. Get All Maintenance => method:GET url:maintenance/v1
+2. Get Maintenance by Id => method:GET url:maintenance/v1/:id
+3. Get Maintenance by Car Id => method:GET url:maintenance/v1/car/:id
+4. Create Maintenance => method:POST url:maintenance/v1/ body: {
+                                                                "dateTime": "2001-01-01T10:10:10",
+                                                                "carId": 1,
+                                                                "serviceList": [1, 2, 3]
+                                                            }
+5. Delete Maintenance => method:DELETE url:maintenance/v1/:id
