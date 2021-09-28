@@ -1,0 +1,32 @@
+{
+  "name": "mservice",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "devstart": "nodemon ./bin/www",
+    "debug": "nodemon --inspect ./bin/www",
+    "test": "jasmine"
+  },
+  "dependencies": {
+    "connect-redis": "^6.0.0",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "dotenv": "^10.0.0",
+    "express": "~4.16.1",
+    "express-di": "^5.0.0",
+    "express-session": "^1.17.2",
+    "http-errors": "~1.6.3",
+    "mariadb": "^2.5.4",
+    "moment": "^2.29.1",
+    "moment-timezone": "^0.5.33",
+    "morgan": "~1.9.1",
+    "pug": "2.0.0-beta11",
+    "request": "^2.88.2",
+    "winston": "^3.3.3"
+  },
+  "devDependencies": {
+    "jasmine": "^3.9.0",
+    "nodemon": "^2.0.12"
+  }
+}
