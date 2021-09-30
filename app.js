@@ -6,6 +6,7 @@ var logger = require('morgan');
 const dotenv = require('dotenv');
 const mariadb = require('mariadb');
 const { log } = require('./lib');
+const { v4: uuidv4 } = require('uuid');
 
 // for use factory
 require('express-di');
@@ -109,8 +110,11 @@ app.factory('db', (req, res, next) => {
   next(null, pool);
 });
 
+// To add a random UUID
+app.factory('reqUUID', (req, res, next) => {
+  next(null, uuidv4());
+});
 
 log.info(`[Info] ${process.env.APP_ID_SISTEMA}`);
-// log.defaultMeta = { Sistema: process.env.APP_ID_SISTEMA, db: pool };
 
 module.exports = app;

@@ -1,7 +1,7 @@
 const model = require('../models/serviceModel');
-const { log } = require('../lib');
+const { errorResponse } = require('../lib');
 
-exports.serviceListAll = async (db, req, res, next) => {
+exports.serviceListAll = async (db, reqUUID, req, res, next) => {
   try {
     const result = await model.serviceListAll(db, null);
     res.status(200).json({
@@ -9,15 +9,11 @@ exports.serviceListAll = async (db, req, res, next) => {
       error: null,
     });
   } catch (err) {
-    log.error(`[service] ${JSON.stringify(err)}`);
-    res.status(500).json({
-      recordset: null,
-      error: err.message,
-    });
+    errorResponse(res, 'owner', reqUUID, err);
   }
 }
 
-exports.serviceGetById = async (db, req, res, next) => {
+exports.serviceGetById = async (db, reqUUID, req, res, next) => {
   try {
     const result = await model.serviceGetById(db, req.params);
     res.status(200).json({
@@ -25,15 +21,11 @@ exports.serviceGetById = async (db, req, res, next) => {
       error: null,
     });
   } catch (err) {
-    log.error(`[service] ${JSON.stringify(err)}`);
-    res.status(500).json({
-      recordset: null,
-      error: err.message,
-    });
+    errorResponse(res, 'owner', reqUUID, err);
   }
 }
 
-exports.serviceCreate = async (db, req, res, next) => {
+exports.serviceCreate = async (db, reqUUID, req, res, next) => {
   try {
     const insertResult = await model.serviceCreate(db, req.body);
     const insertId = insertResult.insertId;
@@ -43,15 +35,11 @@ exports.serviceCreate = async (db, req, res, next) => {
       error: null,
     });
   } catch (err) {
-    log.error(`[service] ${JSON.stringify(err)}`);
-    res.status(500).json({
-      recordset: null,
-      error: err.message,
-    });
+    errorResponse(res, 'owner', reqUUID, err);
   }
 }
 
-exports.serviceUpdate = async (db, req, res, next) => {
+exports.serviceUpdate = async (db, reqUUID, req, res, next) => {
   try {
     const udateResult = await model.serviceUpdate(db, req.params, req.body);
     const result = await model.serviceGetById(db, req.params);
@@ -60,15 +48,11 @@ exports.serviceUpdate = async (db, req, res, next) => {
       error: null,
     });
   } catch (err) {
-    log.error(`[service] ${JSON.stringify(err)}`);
-    res.status(500).json({
-      recordset: null,
-      error: err.message,
-    });
+    errorResponse(res, 'owner', reqUUID, err);
   }
 }
 
-exports.serviceDelete = async (db, req, res, next) => {
+exports.serviceDelete = async (db, reqUUID, req, res, next) => {
   try {
     const result = await model.serviceDelete(db, req.params);
     res.status(202).json({
@@ -76,15 +60,11 @@ exports.serviceDelete = async (db, req, res, next) => {
       error: null,
     });
   } catch (err) {
-    log.error(`[service] ${JSON.stringify(err)}`);
-    res.status(500).json({
-      recordset: null,
-      error: err.message,
-    });
+    errorResponse(res, 'owner', reqUUID, err);
   }
 }
 
-exports.validData = async (db, req, res, next) => {
+exports.validData = async (db, reqUUID, req, res, next) => {
   try {
     const fields = [];
     const body = req.body;
@@ -103,10 +83,6 @@ exports.validData = async (db, req, res, next) => {
       next()
     }
   } catch (err) {
-    log.error(`[service] ${JSON.stringify(err)}`);
-    res.status(500).json({
-      recordset: null,
-      error: err.message,
-    });
+    errorResponse(res, 'owner', reqUUID, err);
   }
 }

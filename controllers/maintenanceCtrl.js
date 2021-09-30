@@ -1,8 +1,8 @@
 const model = require('../models/maintenanceModel');
 const serviceModel = require('../models/serviceModel');
-const { log } = require('../lib');
+const { errorResponse } = require('../lib');
 
-exports.maintenanceListAll = async (db, req, res, next) => {
+exports.maintenanceListAll = async (db, reqUUID, req, res, next) => {
   try {
     const result = await model.maintenanceListAll(db, null);
     res.status(200).json({
@@ -10,15 +10,11 @@ exports.maintenanceListAll = async (db, req, res, next) => {
       error: null,
     });
   } catch (err) {
-    log.error(`[maintenance] ${JSON.stringify(err)}`);
-    res.status(500).json({
-      recordset: null,
-      error: err.message,
-    });
+    errorResponse(res, 'owner', reqUUID, err);
   }
 }
 
-exports.maintenanceGetById = async (db, req, res, next) => {
+exports.maintenanceGetById = async (db, reqUUID, req, res, next) => {
   try {
     const resultHeader = await model.maintenanceGetById(db, req.params);
     const resultDeta = await model.maintenanceDetaGetById(db, req.params);
@@ -31,15 +27,11 @@ exports.maintenanceGetById = async (db, req, res, next) => {
       error: null,
     });
   } catch (err) {
-    log.error(`[maintenance] ${JSON.stringify(err)}`);
-    res.status(500).json({
-      recordset: null,
-      error: err.message,
-    });
+    errorResponse(res, 'owner', reqUUID, err);
   }
 }
 
-exports.maintenanceGetByCarId = async (db, req, res, next) => {
+exports.maintenanceGetByCarId = async (db, reqUUID, req, res, next) => {
   try {
     const result = await model.maintenanceGetByCarId(db, req.params);
     res.status(200).json({
@@ -47,15 +39,11 @@ exports.maintenanceGetByCarId = async (db, req, res, next) => {
       error: null,
     });
   } catch (err) {
-    log.error(`[maintenance] ${JSON.stringify(err)}`);
-    res.status(500).json({
-      recordset: null,
-      error: err.message,
-    });
+    errorResponse(res, 'owner', reqUUID, err);
   }
 }
 
-exports.maintenanceCreate = async (db, req, res, next) => {
+exports.maintenanceCreate = async (db, reqUUID, req, res, next) => {
   try {
     const insertResult = await model.maintenanceCreate(db, req.body);
     const insertId = insertResult.insertId;
@@ -77,15 +65,11 @@ exports.maintenanceCreate = async (db, req, res, next) => {
       error: null,
     });
   } catch (err) {
-    log.error(`[maintenance] ${JSON.stringify(err)}`);
-    res.status(500).json({
-      recordset: null,
-      error: err.message,
-    });
+    errorResponse(res, 'owner', reqUUID, err);
   }
 }
 
-exports.maintenanceDelete = async (db, req, res, next) => {
+exports.maintenanceDelete = async (db, reqUUID, req, res, next) => {
   try {
     const resultDeta = await model.maintenanceDetaDelete(db, req.params);
     const result = await model.maintenanceDelete(db, req.params);
@@ -94,15 +78,11 @@ exports.maintenanceDelete = async (db, req, res, next) => {
       error: null,
     });
   } catch (err) {
-    log.error(`[maintenance] ${JSON.stringify(err)}`);
-    res.status(500).json({
-      recordset: null,
-      error: err.message,
-    });
+    errorResponse(res, 'owner', reqUUID, err);
   }
 }
 
-exports.validData = async (db, req, res, next) => {
+exports.validData = async (db, reqUUID, req, res, next) => {
   try {
     const fields = [];
     const body = req.body;
@@ -123,10 +103,6 @@ exports.validData = async (db, req, res, next) => {
       next()
     }
   } catch (err) {
-    log.error(`[maintenance] ${JSON.stringify(err)}`);
-    res.status(500).json({
-      recordset: null,
-      error: err.message,
-    });
+    errorResponse(res, 'owner', reqUUID, err);
   }
 }

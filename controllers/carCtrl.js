@@ -1,7 +1,7 @@
 const model = require('../models/carModel');
-const { log } = require('../lib');
+const { errorResponse } = require('../lib');
 
-exports.carListAll = async (db, req, res, next) => {
+exports.carListAll = async (db, reqUUID, req, res, next) => {
   try {
     const result = await model.carListAll(db, null);
     res.status(200).json({
@@ -9,15 +9,11 @@ exports.carListAll = async (db, req, res, next) => {
       error: null,
     });
   } catch (err) {
-    log.error(`[car] ${JSON.stringify(err)}`);
-    res.status(500).json({
-      recordset: null,
-      error: err.message,
-    });
+    errorResponse(res, 'owner', reqUUID, err);
   }
 }
 
-exports.carGetById = async (db, req, res, next) => {
+exports.carGetById = async (db, reqUUID, req, res, next) => {
   try {
     const result = await model.carGetById(db, req.params);
     res.status(200).json({
@@ -25,15 +21,11 @@ exports.carGetById = async (db, req, res, next) => {
       error: null,
     });
   } catch (err) {
-    log.error(`[car] ${JSON.stringify(err)}`);
-    res.status(500).json({
-      recordset: null,
-      error: err.message,
-    });
+    errorResponse(res, 'owner', reqUUID, err);
   }
 }
 
-exports.carGetByOwnerId = async (db, req, res, next) => {
+exports.carGetByOwnerId = async (db, reqUUID, req, res, next) => {
   try {
     const result = await model.carGetByOwnerId(db, req.params);
     res.status(200).json({
@@ -41,15 +33,11 @@ exports.carGetByOwnerId = async (db, req, res, next) => {
       error: null,
     });
   } catch (err) {
-    log.error(`[car] ${JSON.stringify(err)}`);
-    res.status(500).json({
-      recordset: null,
-      error: err.message,
-    });
+    errorResponse(res, 'owner', reqUUID, err);
   }
 }
 
-exports.carCreate = async (db, req, res, next) => {
+exports.carCreate = async (db, reqUUID, req, res, next) => {
   try {
     const insertResult = await model.carCreate(db, req.body);
     const insertId = insertResult.insertId;
@@ -59,15 +47,11 @@ exports.carCreate = async (db, req, res, next) => {
       error: null,
     });
   } catch (err) {
-    log.error(`[car] ${JSON.stringify(err)}`);
-    res.status(500).json({
-      recordset: null,
-      error: err.message,
-    });
+    errorResponse(res, 'owner', reqUUID, err);
   }
 }
 
-exports.carUpdate = async (db, req, res, next) => {
+exports.carUpdate = async (db, reqUUID, req, res, next) => {
   try {
     const udateResult = await model.carUpdate(db, req.params, req.body);
     const result = await model.carGetById(db, req.params);
@@ -76,15 +60,11 @@ exports.carUpdate = async (db, req, res, next) => {
       error: null,
     });
   } catch (err) {
-    log.error(`[car] ${JSON.stringify(err)}`);
-    res.status(500).json({
-      recordset: null,
-      error: err.message,
-    });
+    errorResponse(res, 'owner', reqUUID, err);
   }
 }
 
-exports.carDelete = async (db, req, res, next) => {
+exports.carDelete = async (db, reqUUID, req, res, next) => {
   try {
     const result = await model.carDelete(db, req.params);
     res.status(202).json({
@@ -92,15 +72,11 @@ exports.carDelete = async (db, req, res, next) => {
       error: null,
     });
   } catch (err) {
-    log.error(`[car] ${JSON.stringify(err)}`);
-    res.status(500).json({
-      recordset: null,
-      error: err.message,
-    });
+    errorResponse(res, 'owner', reqUUID, err);
   }
 }
 
-exports.validData = async (db, req, res, next) => {
+exports.validData = async (db, reqUUID, req, res, next) => {
   try {
     const fields = [];
     const body = req.body;
@@ -125,10 +101,6 @@ exports.validData = async (db, req, res, next) => {
       next()
     }
   } catch (err) {
-    log.error(`[car] ${JSON.stringify(err)}`);
-    res.status(500).json({
-      recordset: null,
-      error: err.message,
-    });
+    errorResponse(res, 'owner', reqUUID, err);
   }
 }

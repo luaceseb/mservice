@@ -1,7 +1,7 @@
 const model = require('../models/ownerModel');
-const { log } = require('../lib');
+const { errorResponse } = require('../lib');
 
-exports.ownerListAll = async (db, req, res, next) => {
+exports.ownerListAll = async (db, reqUUID, req, res, next) => {
   try {
     const result = await model.ownerListAll(db, null);
     res.status(200).json({
@@ -9,15 +9,11 @@ exports.ownerListAll = async (db, req, res, next) => {
       error: null,
     });
   } catch (err) {
-    log.error(`[owner] ${JSON.stringify(err)}`);
-    res.status(500).json({
-      recordset: null,
-      error: err.message,
-    });
+    errorResponse(res, 'owner', reqUUID, err);
   }
 }
 
-exports.ownerGetById = async (db, req, res, next) => {
+exports.ownerGetById = async (db, reqUUID, req, res, next) => {
   try {
     const result = await model.ownerGetById(db, req.params);
     res.status(200).json({
@@ -25,16 +21,11 @@ exports.ownerGetById = async (db, req, res, next) => {
       error: null,
     });
   } catch (err) {
-    log.error(`[owner] ${JSON.stringify(err)}`);
-    res.status(500).json({
-      recordset: null,
-      error: err.message,
-    });
+    errorResponse(res, 'owner', reqUUID, err);
   }
 }
 
-
-exports.ownerCreate = async (db, req, res, next) => {
+exports.ownerCreate = async (db, reqUUID, req, res, next) => {
   try {
     const insertResult = await model.ownerCreate(db, req.body);
     const insertId = insertResult.insertId;
@@ -44,15 +35,11 @@ exports.ownerCreate = async (db, req, res, next) => {
       error: null,
     });
   } catch (err) {
-    log.error(`[owner] ${JSON.stringify(err)}`);
-    res.status(500).json({
-      recordset: null,
-      error: err.message,
-    });
+    errorResponse(res, 'owner', reqUUID, err);
   }
 }
 
-exports.ownerUpdate = async (db, req, res, next) => {
+exports.ownerUpdate = async (db, reqUUID, req, res, next) => {
   try {
     const udateResult = await model.ownerUpdate(db, req.params, req.body);
     const result = await model.ownerGetById(db, req.params);
@@ -61,15 +48,11 @@ exports.ownerUpdate = async (db, req, res, next) => {
       error: null,
     });
   } catch (err) {
-    log.error(`[owner] ${JSON.stringify(err)}`);
-    res.status(500).json({
-      recordset: null,
-      error: err.message,
-    });
+    errorResponse(res, 'owner', reqUUID, err);
   }
 }
 
-exports.ownerDelete = async (db, req, res, next) => {
+exports.ownerDelete = async (db, reqUUID, req, res, next) => {
   try {
     const result = await model.ownerDelete(db, req.params);
     res.status(202).json({
@@ -77,15 +60,11 @@ exports.ownerDelete = async (db, req, res, next) => {
       error: null,
     });
   } catch (err) {
-    log.error(`[owner] ${JSON.stringify(err)}`);
-    res.status(500).json({
-      recordset: null,
-      error: err.message,
-    });
+    errorResponse(res, 'owner', reqUUID, err);
   }
 }
 
-exports.validData = async (db, req, res, next) => {
+exports.validData = async (db, reqUUID, req, res, next) => {
   try {
     const fields = [];
     const body = req.body;
@@ -106,10 +85,6 @@ exports.validData = async (db, req, res, next) => {
       next()
     }
   } catch (err) {
-    log.error(`[owner] ${JSON.stringify(err)}`);
-    res.status(500).json({
-      recordset: null,
-      error: err.message,
-    });
+    errorResponse(res, 'owner', reqUUID, err);
   }
 }
